@@ -42,7 +42,7 @@ model = load_model()
 # ---------- HEADER ----------
 st.title("🌿 Diabetes Risk Prediction System")
 st.markdown("""
-This AI-powered system predicts the **risk of diabetes** based on key patient indicators.  
+This AI-powered system predicts the **risk of diabetes** based on key patient indicators.
 It supports clinicians and individuals in early screening and prevention planning.
 """)
 
@@ -68,16 +68,6 @@ with st.form("patient_form"):
     # --- Column 3 ---
     with col3:
         hypertension = st.selectbox("Hypertension (1=Yes, 0=No)", [0, 1])
-        both_dm_htn = st.selectbox("Both DM + HTN (1=Yes, 0=No)", [0.0, 1.0])
-
-        # ✅ Treatment combinations available
-        treatment = st.selectbox(
-            "Treatment Combination",
-            [
-                'ab', 'abe', 'ae', 'ade', 'e', 'ad',
-                'aec', 'ace', 'ce', 'ebe', 'aw', 'ac', 'a'
-            ]
-        )
 
     submitted = st.form_submit_button("🔍 Predict Diabetes Risk")
 
@@ -95,8 +85,6 @@ if submitted:
             'BP(mmHg)': [bp_combined],
             'BLOOD SUGAR(mmol/L)': [blood_sugar],
             'HTN': [int(hypertension)],
-            'BOTH DM+HTN': [float(both_dm_htn)],
-            'TREATMENT': [treatment]
         })
 
         # Match columns to model
@@ -140,7 +128,6 @@ if submitted:
             "Diastolic_BP": [diastolic_bp],
             "Blood_Sugar": [blood_sugar],
             "Hypertension": [hypertension],
-            "Treatment": [treatment],
             "Probability": [prob],
             "Risk_Level": [risk_level]
         }
